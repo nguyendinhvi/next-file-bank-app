@@ -1,0 +1,14 @@
+export { default as IconFolderBlue } from "./folder-blue.svg";
+export { default as IconChevronUp } from "./chevron-up.svg";
+export { default as IconHome } from "./home.svg";
+export { default as IconSearch } from "./search.svg";
+export { default as IconFolder } from "./folder.svg";
+export { default as IconCart } from "./cart.svg";
+export { default as IconLogo } from "./logo.svg";
+export { default as IconMail } from "./mail.svg";
+export { default as IconBell } from "./bell.svg";
+export { default as IconFolderBlack } from "./folder-black.svg";
+export { default as IconFileBlack } from "./file-black.svg";
+export { default as IconFileExcel } from "./file-excel.svg";
+export { default as IconFileDoc } from "./file-doc.svg";
+export { default as IconPause } from "./pause.svg";
