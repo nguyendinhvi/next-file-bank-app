@@ -8,7 +8,7 @@ import { sleep } from "@/utils/helper";
 
 // const { confirm } = Modal;
 
-interface IProps {
+export interface IFModalProps {
   isVisible?: any;
   title?: any;
   onCancel?: any;
@@ -50,9 +50,7 @@ const FModal = ({
   classNameBody = "",
   size = "md",
   children,
-}: IProps) => {
-  console.log("isVisible :", isVisible);
-
+}: IFModalProps) => {
   const cancelButtonRef = useRef(null);
 
   const [isRender, setIsRender] = useState<boolean>(false);

@@ -3,10 +3,14 @@ import {
   IconBell,
   IconChevronUp,
   IconLogo,
+  IconLogout,
   IconMail,
   IconSearch,
 } from "@/resources/icon";
 import React, { FC, useId } from "react";
+import FPopover from "../core/FPopover";
+import Link from "next/link";
+import { useContextGlobal } from "@/contexts/global-context";
 
 interface IProps {}
 const src =
@@ -14,9 +18,11 @@ const src =
 
 const Navbar: FC<IProps> = ({}) => {
   const id = useId();
+  const { user } = useContextGlobal();
+  // return <FPopover />;
 
   return (
-    <header className="py-2 top-0 left-0 z-[2] bg-white w-full px-4 border-b-[1px] flex justify-between">
+    <header className="py-2 fixed top-0 left-0 z-[2] bg-white w-full px-4 border-b-[1px] flex justify-between">
       {/* logo && name */}
       <div className="flex gap-3 items-center">
         <IconLogo className="size-10 text-black" />
@@ -43,11 +49,51 @@ const Navbar: FC<IProps> = ({}) => {
           </div>
           <IconBell className="size-5" />
         </div>
-        <div className="flex items-center gap-3 px-2">
-          <img src={src} alt="" className="size-8 object-cover rounded-full" />
-          <p className="text-gray-700">Deniv Ng</p>
-          <IconChevronUp className="size-4" />
-        </div>
+
+        <FPopover
+          content={
+            <div className="">
+              <div className="p-3">
+                <a
+                  className="block rounded-lg py-2 px-3 transition hover:bg-white/5"
+                  href="#"
+                >
+                  <p className="font-semibold">Insights</p>
+                  <p className="text-black/50">
+                    Measure actions your users take
+                  </p>
+                </a>
+                <a
+                  className="block rounded-lg py-2 px-3 transition hover:bg-white/5"
+                  href="#"
+                >
+                  <p className="font-semibold ">Automations</p>
+                  <p className="text-black/50">
+                    Create your own targeted content
+                  </p>
+                </a>
+
+                {/* logout */}
+                <Link
+                  href={"/login"}
+                  className="font-semibold rounded-lg py-2 px-3  transition hover:bg-gray-100 flex items-center text-base gap-3"
+                >
+                  <IconLogout className="size-5 inline-block" /> Logout
+                </Link>
+              </div>
+            </div>
+          }
+        >
+          <div className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded-md">
+            <img
+              src={src}
+              alt=""
+              className="size-6 object-cover rounded-full"
+            />
+            <p className="text-gray-700">{user?.email}</p>
+            <IconChevronUp className="size-4" />
+          </div>
+        </FPopover>
       </div>
     </header>
   );

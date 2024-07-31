@@ -5,13 +5,16 @@ import { ModalContextProvider } from "@/contexts/modal-context";
 import Layout from "@/layouts/Layout";
 
 import type { AppProps } from "next/app";
+import { GlobalContextProvider } from "@/contexts/global-context";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ModalContextProvider>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ModalContextProvider>
+    <GlobalContextProvider>
+      <ModalContextProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ModalContextProvider>
+    </GlobalContextProvider>
   );
 }

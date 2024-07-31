@@ -7,9 +7,9 @@ interface IProps {}
 
 const MainLayout: FC<PropsWithChildren<IProps>> = ({ children }) => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pt-[57px] flex flex-col">
       <Navbar />
-      <main className="size-full flex-1">{children}</main>
+      <main className="size-full flex-1 flex flex-col">{children}</main>
     </div>
   );
 };

@@ -3,20 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3333",
+    "dev": "next dev --port 3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.19",
+    "@headlessui/react": "^2.1.2",
     "@heroicons/react": "^2.1.3",
     "@mui/icons-material": "^5.16.0",
     "@svgr/webpack": "^8.1.0",
+    "axios": "^1.7.2",
     "next": "13.5.4",
     "react": "^18",
     "react-dom": "^18",
-    "sass": "^1.75.0"
+    "sass": "^1.75.0",
+    "tailwind-merge": "^2.4.0"
   },
   "devDependencies": {
     "@lidojs/core": "^0.0.6",

@@ -7,7 +7,6 @@ import FileIcon from "./FileIcon";
 
 const FileDropZone: React.FC = () => {
   const [droppedFiles, setDroppedFiles] = useState<File[]>([]);
-  console.log("droppedFiles :", droppedFiles);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const { openModal } = useModalContext();
