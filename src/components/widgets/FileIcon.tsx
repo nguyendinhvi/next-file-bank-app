@@ -8,7 +8,6 @@ interface IProps {
 
 const FileIcon: FC<IProps> = ({ file }) => {
   const fileType = (file?.name || "").split(".")?.pop()?.toLowerCase();
-  console.log("fileType :", fileType);
   return (
     <>
       {file.type?.includes("image") && (

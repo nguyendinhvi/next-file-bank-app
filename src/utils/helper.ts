@@ -6,6 +6,10 @@ import {
   NextApiResponse,
 } from "next";
 
+type Cookies = {
+  [key: string]: string;
+};
+
 export function sleep(milliseconds: number) {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
@@ -26,13 +30,15 @@ export function parseCookies(cookieHeader: string | undefined): Cookies {
   return cookies;
 }
 
-export function setCookie(name: string, value: string, options: any = {}) {
-  const cookie = `${name}=${value}; ${Object.entries(options)
-    .map(([key, value]) => `${key}=${value}`)
-    .join("; ")}`;
-  document.cookie = cookie;
+export function setCookie(name: string, value: string, days?: number): void {
+  let expires = "";
+  if (days) {
+    const date = new Date();
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + (value || "") + expires + "; path=/";
 }
-
 export function authenticate(context: GetServerSidePropsContext) {
   const { accessToken }: Cookies =
     parseCookies(context.req.headers.cookie) ?? {};
@@ -48,3 +54,7 @@ export function authenticate(context: GetServerSidePropsContext) {
 
   return { username: "vi" };
 }
+
+export const classNames = (...classes: string[]) => {
+  return classes.join(" ");
+};

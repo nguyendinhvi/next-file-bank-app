@@ -12,3 +12,5 @@ export { default as IconFileBlack } from "./file-black.svg";
 export { default as IconFileExcel } from "./file-excel.svg";
 export { default as IconFileDoc } from "./file-doc.svg";
 export { default as IconPause } from "./pause.svg";
+export { default as IconLogout } from "./logout.svg";
+export { default as IconPlusCircle } from "./plus-circle.svg";

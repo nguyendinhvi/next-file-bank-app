@@ -1,0 +1,62 @@
+{
+  "API_URL": "https://api.rivennft.io/api/v1",
+  "PUBLIC_PATH": "/",
+  "BASE_NAME": "/",
+  "DOMAIN_IMG": "",
+  "CONNECT": {
+    "DECIMAL_CHAIN_ID": 5,
+    "HEX_CHAIN_ID": "0x5",
+    "BLOCK_EXPLORER": "https://goerli.etherscan.io",
+    "RPC_URI": "https://eth-goerli.nodereal.io/v1/964586be9e31440a981e524d59812571",
+    "CHAIN_NAME": "Goerli Testnet"
+  },
+  "MULTIPLE_CHAIN": [
+    {
+      "DECIMAL_CHAIN_ID": 5,
+      "HEX_CHAIN_ID": "0x5",
+      "BLOCK_EXPLORER": "https://goerli.etherscan.io",
+      "RPC_URI": "https://eth-goerli.nodereal.io/v1/964586be9e31440a981e524d59812571",
+      "RPC_CLIENT": "https://rpc.ankr.com/eth_goerli",
+      "CHAIN_NAME": "Goerli Testnet"
+    },
+    {
+      "DECIMAL_CHAIN_ID": 80001,
+      "HEX_CHAIN_ID": "0x13881",
+      "BLOCK_EXPLORER": "https://mumbai.polygonscan.com",
+      "RPC_URI": "https://polygon-mumbai.g.alchemy.com/v2/N1NDutyqXM5LgVS0RXaA5485aEFZxd00",
+      "RPC_CLIENT": "https://rpc.ankr.com/polygon_mumbai",
+      "CHAIN_NAME": "Mumbai Polygon"
+    },
+    {
+      "DECIMAL_CHAIN_ID": 137,
+      "HEX_CHAIN_ID": "0x89",
+      "BLOCK_EXPLORER": "https://polygonscan.com/",
+      "RPC_URI": "https://polygon-rpc.com",
+      "RPC_CLIENT": "https://polygon-mainnet.public.blastapi.io",
+      "CHAIN_NAME": "Polygon"
+    }
+  ],
+  "CONTRACT":{
+    "137": {
+      "weth": "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270",
+      "currencyManager": "0x7ACAE766A82B5f63bC080aA2ea957B02fD0625C7",
+      "executionManager": "0xAae5414a091E7D255D99137D72C576D8E9FA85d8",
+      "transferSelectorNFT": "0x5e442Cafb8955d1eeB48eecb0104950caBF40fD3",
+      "transferManagerERC721": "0xF176112CD51062A0d7eBa7d9D2129d0B61C6b0e5",
+      "transferManagerERC1155": "0x75F84b83b033F048Dc20e55D161A55d097d5F90a",
+      "transferManagerNonCompliantERC721": "0x3F71d645D2AA034269FEF688EF49671Cade30F96",
+      "nuwtonExchange": "0x6637F2036a9080DB12a9Eeb4958B51cF5587949e",
+      "strategyStandardSaleForFixedPrice": "0x2aAE52Ae285Fe509A571285D45F1b11F78350Fa1",
+      "strategyAnyItemFromCollectionForFixedPrice": "0xa241805f7AE5a54fe56139ECdebA6beae492CB41",
+      "strategyDutchAuction": "0x0C1BC4a69d6dE2aD90e06C44ef77bd6A5C680d7b",
+      "strategyPrivateSale": "0x7446Cf6ceB23666E7C96AE63b26e3c3A95b32E50",
+      "strategyAnyItemInASetForFixedPrice": "0x4f1647bd571910679a83dF724Bf7Aa6755127d69",
+      "royaltyFeeRegistry": "0x0772A659e59b93914bbfB00E3091Ff6d69b64B29",
+      "royaltyFeeManager": "0x20498cba7D8dacdC6B5277252725bE372c33D34e",
+      "royaltyFeeSetter": "0x994F045200a104cCD822d379760A971D992b1422"
+     }
+  },
+  "FORMAT_NUMBER_FIXED": 3,
+  "DEFAULT_CHAIN_ID": 137,
+  "DEFAULT_GAS_PRICE": "30.0"
+}

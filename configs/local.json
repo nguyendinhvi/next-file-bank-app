@@ -1,0 +1,6 @@
+{
+  "API_URL": "http://localhost:3002/api/v1",
+  "PUBLIC_PATH": "/",
+  "BASE_NAME": "/",
+  "DOMAIN_IMG": ""
+}

@@ -2,14 +2,32 @@ import React, { FC } from "react";
 
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import { IconFolderBlue, IconChevronUp } from "@/resources/icon";
-import FolderMenuItem from "../folder/FolderMenuItem";
+import FolderMenuItem from "../../../folder/components/FolderMenuItem";
+import FButton from "@/components/core/FButton";
+import { useModalContext } from "@/contexts/modal-context";
+import { Folder } from "@/@interfaces/model/folder";
+import FolderTree from "../../../folder/components/FolderTree";
 
-interface IProps {}
+interface IProps {
+  folders: Folder[] | undefined;
+}
 
-const ProfileSidebar: FC<IProps> = ({}) => {
+const ProfileSidebar: FC<IProps> = ({ folders }) => {
+  const { openModal } = useModalContext();
+
   return (
     <div className="p-4 border-r-[1px] w-[300px]">
-      {/*  */}
+      <FButton
+        text="Create new"
+        attributes={{}}
+        onClick={() =>
+          openModal("create_folder", {
+            title: "Create folder",
+            // showFooter: true,
+            // onConfirm: () => {},
+          })
+        }
+      />
       <div className="flex mb-1 justify-between w-full min-w-[200px] rounded-md hover:bg-gray-100 px-2 py-3 cursor-pointer items-center gap-2">
         <div className="flex gap-2 items-center">
           <IconFolderBlue className="size-5" />
@@ -22,32 +40,11 @@ const ProfileSidebar: FC<IProps> = ({}) => {
           <IconChevronUp className="size-4" />
         </div>
       </div>
+
       {/* folders */}
-      <div className="pl-2">
-        <FolderMenuItem name="My Documentation" />
-        <div className="pl-2">
-          <div className="flex">
-            <div className="flex items-center">
-              <div className="border-l-[1px] h-full"></div>
-              <div className="w-2 border-t-[1px]"></div>
-            </div>
-            <FolderMenuItem name="Assets and images asdkask" />
-          </div>
-          <div className="flex">
-            <div className="flex items-center">
-              <div className="border-l-[1px] h-full"></div>
-              <div className="w-2 border-t-[1px]"></div>
-            </div>
-            <FolderMenuItem />
-          </div>
-          <div className="flex">
-            <div className="flex">
-              <div className="border-l-[1px] w-2 border-b-[1px] h-1/2"></div>
-            </div>
-            <FolderMenuItem />
-          </div>
-        </div>
-      </div>
+      <FolderTree folders={folders} />
+
+      {/* tree */}
     </div>
   );
 };
