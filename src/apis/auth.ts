@@ -11,6 +11,6 @@ const login = (data: IFormDataLogin, config?: AxiosRequestConfig) => {
     config
   );
 };
-export const authApi = {
+export const authAPI = {
   login,
 };

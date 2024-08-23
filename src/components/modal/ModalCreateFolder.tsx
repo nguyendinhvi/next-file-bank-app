@@ -1,22 +1,37 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { IFormDataFolderCreate } from "@/@interfaces/model/folder";
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import FModal from "../core/FModal";
 import { useModalContext } from "@/contexts/modal-context";
 import FButton from "../core/FButton";
-import { folderApi } from "@/apis/folder";
+import { folderAPI } from "@/apis/folder";
 
 interface IProps {}
 
 const ModalCreateFolder: FC<IProps> = ({}) => {
+  const { payload } = useModalContext();
+
   const [formData, setFormData] = useState<IFormDataFolderCreate>({
     level: 1,
     name: "",
   });
+  console.log("formData :", formData);
+
+  useEffect(() => {
+    if (payload?.folder) {
+      setFormData((prev) => ({
+        ...prev,
+        level: Number(payload?.folder?.level || 0) + 1,
+        parent_id: payload?.folder?.id,
+      }));
+    }
+  }, [payload?.folder]);
 
   const handleSubmit = async () => {
     try {
       if (formData) {
-        const res = await folderApi.create(formData);
+        const res = await folderAPI.create(formData);
+        console.log("res :", res);
       }
     } catch (error) {}
   };

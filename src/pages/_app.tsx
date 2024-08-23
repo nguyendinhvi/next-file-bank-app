@@ -6,11 +6,17 @@ import Layout from "@/layouts/Layout";
 
 import type { AppProps } from "next/app";
 import { GlobalContextProvider } from "@/contexts/global-context";
+import Head from "next/head";
 
-export default function App({ Component, pageProps }: AppProps) {
+type Meta = { meta: { title: string } };
+
+export default function App({ Component, pageProps }: AppProps<Meta>) {
   return (
     <GlobalContextProvider>
       <ModalContextProvider>
+        <Head>
+          <title>{pageProps?.meta?.title}</title>
+        </Head>
         <Layout>
           <Component {...pageProps} />
         </Layout>

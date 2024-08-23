@@ -1,11 +1,26 @@
+import { Folder } from "@/@interfaces/model/folder";
+import { Nullable } from "@/@types";
 import { useModalContext } from "@/contexts/modal-context";
 import { IconHome, IconPlusCircle } from "@/resources/icon";
 import React, { FC } from "react";
 
-interface IProps {}
+interface IProps {
+  folder: Nullable<Folder>;
+}
 
-const Breadcrumb: FC<IProps> = ({}) => {
+const FolderRightHeader: FC<IProps> = ({ folder }) => {
   const { openModal } = useModalContext();
+
+  const handleOpenModal = () => {
+    openModal(
+      "create_folder",
+      {
+        title: "Create folder",
+      },
+      { folder }
+    );
+  };
+
   return (
     <div className="border-b-[1px] w-full px-6 py-3 flex justify-between">
       <div className="flex gap-2">
@@ -22,16 +37,7 @@ const Breadcrumb: FC<IProps> = ({}) => {
         </div>
       </div>
 
-      <button
-        onClick={() => {
-          openModal("create_folder", {
-            title: "Create folder",
-            // showFooter: true,
-            // onConfirm: () => {},
-          });
-        }}
-        className="flex items-center px-2 py-1 hover:bg-gray-100 rounded-md gap-1 text-sm"
-      >
+      <button onClick={handleOpenModal} className="flex items-center px-2 py-1 hover:bg-gray-100 rounded-md gap-1 text-sm">
         <IconPlusCircle className="size-6 text-green-500" />
         <p className="">Create folder</p>
       </button>
@@ -39,4 +45,4 @@ const Breadcrumb: FC<IProps> = ({}) => {
   );
 };
 
-export default Breadcrumb;
+export default FolderRightHeader;

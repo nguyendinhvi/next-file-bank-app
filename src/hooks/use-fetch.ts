@@ -6,18 +6,19 @@ export const useFetch = <T>(callback: any, dependencies?: any[]) => {
 
   const fetchData = async () => {
     try {
-      const resData = await callback;
+      const resData = await callback();
+      console.log("resData :", resData);
       setData(resData);
-    } catch (error) {}
+    } catch (error) {
+      console.log("error :", error);
+    }
   };
 
   useEffect(() => {
-    if (dependencies?.every((dep) => dep)) {
-      console.log("zo");
+    console.log("zo");
 
-      fetchData();
-    }
-  }, dependencies);
+    fetchData();
+  }, dependencies || []);
 
   return { data };
 };

@@ -6,6 +6,6 @@ export const getUserById = (id: string, config?: AxiosRequestConfig) => {
   return httpServer.get<any, User>(`/user/${id}`, config);
 };
 
-export const userApi = {
+export const userAPI = {
   getUserById,
 };

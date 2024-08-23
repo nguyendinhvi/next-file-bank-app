@@ -18,7 +18,8 @@
     "react": "^18",
     "react-dom": "^18",
     "sass": "^1.75.0",
-    "tailwind-merge": "^2.4.0"
+    "tailwind-merge": "^2.4.0",
+    "zustand": "^4.5.4"
   },
   "devDependencies": {
     "@lidojs/core": "^0.0.6",
