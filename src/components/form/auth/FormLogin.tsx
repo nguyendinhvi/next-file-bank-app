@@ -3,7 +3,7 @@ import { setCookie } from "@/utils/helper";
 import { useRouter } from "next/router";
 import React, { FC, useState } from "react";
 import { IFormDataLogin } from "@/@interfaces/common/auth";
-import { authApi } from "@/apis/auth";
+import { authAPI } from "@/apis/auth";
 
 interface IProps {}
 
@@ -18,7 +18,7 @@ const FormLogin: FC<IProps> = ({}) => {
     e.stopPropagation();
     try {
       if (formData) {
-        const data = await authApi.login(formData);
+        const data = await authAPI.login(formData);
         setCookie("token", data?.token);
         setUser(data?.user);
         push(`/profile/${data?.user?.id}`);

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import FModal from "../core/FModal";
 import { IconChevronUp, IconPause } from "@/resources/icon";
 import FileIcon from "./FileIcon";
+import { FileAPI } from "@/apis/file";
 
 const FileDropZone: React.FC = () => {
   const [droppedFiles, setDroppedFiles] = useState<File[]>([]);
@@ -11,12 +12,24 @@ const FileDropZone: React.FC = () => {
 
   const { openModal } = useModalContext();
 
-  const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
-    // openModal("drop_file");
-    event.preventDefault();
-    const files = Array.from(event.dataTransfer.files) as File[];
-    setDroppedFiles(files);
-    setIsOpen(true);
+  const handleDrop = async (event: React.DragEvent<HTMLDivElement>) => {
+    try {
+      console.log("event :", event.target);
+      event.preventDefault();
+      const files = Array.from(event.dataTransfer.files) as File[];
+      console.log("files :", files[0]);
+
+      const formData = new FormData();
+      formData.append("file", files[0]);
+
+      const res = await FileAPI.upload(formData);
+
+      console.log("res :", res);
+      setDroppedFiles(files);
+      setIsOpen(true);
+    } catch (error) {
+      console.log("error :", error);
+    }
   };
 
   const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
@@ -31,19 +44,22 @@ const FileDropZone: React.FC = () => {
           onDragOver={handleDragOver}
           className="w-full h-[300px] rounded cursor-pointer border-2 border-gray-600 border-dashed mt-4"
         >
-          {droppedFiles.length === 0 ? (
-            <p>Drag and drop files here</p>
-          ) : (
-            <ul></ul>
-          )}
+          {droppedFiles.length === 0 ? <p>Drag and drop files here</p> : <ul></ul>}
         </div>
         <input
           type="file"
           multiple
           hidden
           id="choose"
-          onChange={(e) => {
+          onChange={async (e) => {
             const files: any = Array.from(e.target.files as any);
+
+            if (!e.target.files) return;
+            const formData = new FormData();
+            formData.append("file", e.target.files?.[0]);
+
+            const res = await FileAPI.upload(formData);
+
             setDroppedFiles(files);
             setIsOpen(true);
           }}

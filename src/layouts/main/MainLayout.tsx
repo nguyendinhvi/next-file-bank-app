@@ -1,6 +1,6 @@
-import Breadcrumb from "@/components/UI/Breadcrumb";
-import MainUI from "@/components/UI/MainUI";
-import Navbar from "@/components/UI/Navbar";
+import Breadcrumb from "@/components/ui/Breadcrumb";
+import MainUI from "@/components/ui/MainUI";
+import Navbar from "@/components/ui/Navbar";
 import React, { FC, PropsWithChildren } from "react";
 
 interface IProps {}

@@ -2,7 +2,7 @@ import FModal, { IFModalProps } from "@/components/core/FModal";
 import ModalCreateFolder from "@/components/modal/ModalCreateFolder";
 import ModalDropFile from "@/components/modal/ModalDropFile";
 import { EModal } from "@/enums";
-import { TModalName } from "@/@types";
+import { Nullable, TModalName } from "@/@types";
 import { sleep } from "@/utils/helper";
 
 // type IFuncState = (value: any) => void;
@@ -17,10 +17,16 @@ import React, {
   useCallback,
   ReactNode,
 } from "react";
+import { ModalPayload } from "@/@interfaces/common";
 
 interface IModalContext {
   modal: TModalName;
-  openModal: (modalName: TModalName, props?: IFModalProps) => void;
+  payload: Nullable<ModalPayload>;
+  openModal: (
+    modalName: TModalName,
+    props?: IFModalProps,
+    payloadArg?: ModalPayload
+  ) => void;
   closeModal: () => void;
 }
 
@@ -28,6 +34,7 @@ const ModalContext = createContext<IModalContext>({
   modal: "none",
   closeModal: dfFunc,
   openModal: dfFunc,
+  payload: null,
 });
 
 export const useModalContext = () => {
@@ -45,6 +52,7 @@ export const ModalContextProvider = ({ children }: any) => {
   const [modal, setModal] = useState<TModalName>("none");
   const [modalProps, setModalProps] = useState<IFModalProps>();
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [payload, setPayload] = useState<ModalPayload>();
 
   const Modal: Record<TModalName, ReactNode> = {
     upload_file: <ModalDropFile />,
@@ -57,19 +65,22 @@ export const ModalContextProvider = ({ children }: any) => {
     setIsVisible(false);
   }, []);
 
-  const openModal = useCallback(
-    (modalName: TModalName, props?: IFModalProps) => {
-      setIsVisible(true);
-      setModal(modalName);
-      setModalProps(props);
-    },
-    []
-  );
+  const openModal = <Payload,>(
+    modalName: TModalName,
+    props?: IFModalProps,
+    payloadArg?: Payload
+  ) => {
+    setIsVisible(true);
+    setModal(modalName);
+    setModalProps(props);
+    setPayload(payloadArg as any);
+  };
 
   const modalProvider: IModalContext = {
     modal,
     openModal,
     closeModal,
+    payload,
   };
 
   return (

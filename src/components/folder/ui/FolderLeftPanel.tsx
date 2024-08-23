@@ -2,17 +2,17 @@ import React, { FC } from "react";
 
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import { IconFolderBlue, IconChevronUp } from "@/resources/icon";
-import FolderMenuItem from "../../../folder/components/FolderMenuItem";
+import FolderMenuItem from "../FolderMenuItem";
 import FButton from "@/components/core/FButton";
 import { useModalContext } from "@/contexts/modal-context";
 import { Folder } from "@/@interfaces/model/folder";
-import FolderTree from "../../../folder/components/FolderTree";
+import FolderTree from "../FolderTree";
 
 interface IProps {
   folders: Folder[] | undefined;
 }
 
-const ProfileSidebar: FC<IProps> = ({ folders }) => {
+const FolderLeftPanel: FC<IProps> = ({ folders }) => {
   const { openModal } = useModalContext();
 
   return (
@@ -49,4 +49,4 @@ const ProfileSidebar: FC<IProps> = ({ folders }) => {
   );
 };
 
-export default ProfileSidebar;
+export default FolderLeftPanel;
