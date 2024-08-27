@@ -2,6 +2,8 @@ import React, { FC, PropsWithChildren } from "react";
 import MainLayout from "./main/MainLayout";
 
 import { Poppins } from "next/font/google";
+import { useRouter } from "next/router";
+import { pathApp } from "@/utils";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -12,6 +14,11 @@ const poppins = Poppins({
 interface IProps {}
 
 const Layout: FC<PropsWithChildren<IProps>> = ({ children }) => {
+  const { pathname } = useRouter();
+
+  if ([pathApp.login, pathApp.signup].includes(pathname))
+    return <>{children}</>;
+
   return (
     <div className={poppins.className}>
       <MainLayout>{children}</MainLayout>

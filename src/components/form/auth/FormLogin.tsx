@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import React, { FC, useState } from "react";
 import { IFormDataLogin } from "@/@interfaces/common/auth";
 import { authAPI } from "@/apis/auth";
+import FormInput from "@/components/core/form/FormInput";
 
 interface IProps {}
 
@@ -35,45 +36,9 @@ const FormLogin: FC<IProps> = ({}) => {
       <p className="mb-6">Start managing your finance faster and better</p>
 
       <div className="mb-2">
-        <div className="mb-2">
-          <label htmlFor="" className="block text-gray-600">
-            Email
-          </label>
-          <div className="relative">
-            {/* <IconMail className="absolute top-1/2 left-3 -translate-y-1/2 size-5" /> */}
-            <input
-              onChange={(e) =>
-                setFormData((prev: any) => ({
-                  ...prev,
-                  email: e.target.value,
-                }))
-              }
-              value={formData?.email}
-              className="py-2 px-4 outline-none bg-gray-100 rounded-md w-full"
-              placeholder="email"
-            />
-          </div>
-        </div>
-        <div className="mb-2">
-          <label htmlFor="" className="block text-gray-600">
-            Password
-          </label>
-          <div className="relative">
-            {/* <IconMail className="absolute top-1/2 left-3 -translate-y-1/2 size-5" /> */}
-            <input
-              value={formData?.password}
-              onChange={(e) =>
-                setFormData((prev: any) => ({
-                  ...prev,
-                  password: e.target.value,
-                }))
-              }
-              type="password"
-              className="py-2 px-4 outline-none bg-gray-100 rounded-md w-full"
-              placeholder="password"
-            />
-          </div>
-        </div>
+        <FormInput label="Email" />
+        <FormInput label="Password" />
+
         <a href="" className="text-blue-600 text-right block w-full text-xs">
           Forgot password
         </a>

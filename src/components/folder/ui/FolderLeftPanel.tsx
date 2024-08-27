@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import { IconFolderBlue, IconChevronUp } from "@/resources/icon";
 import FolderMenuItem from "../FolderMenuItem";
-import FButton from "@/components/core/FButton";
+import Button from "@/components/core/Button";
 import { useModalContext } from "@/contexts/modal-context";
 import { Folder } from "@/@interfaces/model/folder";
 import FolderTree from "../FolderTree";
@@ -17,7 +17,7 @@ const FolderLeftPanel: FC<IProps> = ({ folders }) => {
 
   return (
     <div className="p-4 border-r-[1px] w-[300px]">
-      <FButton
+      <Button
         text="Create new"
         attributes={{}}
         onClick={() =>

@@ -14,7 +14,7 @@ const injectToken = (config: AxiosRequestConfig): AxiosRequestConfig => {
   }
 };
 
-class Http {
+class Https {
   private instance: AxiosInstance | null = null;
   private headers: Readonly<Record<string, string | boolean>> = {
     Accept: "application/json",
@@ -32,16 +32,16 @@ class Http {
   }
 
   initHttp() {
-    const httpServer = axios.create({
+    const https = axios.create({
       baseURL: config["API_URL"],
       headers: this.headers,
     });
 
-    httpServer.interceptors.request.use(injectToken as any, (error) =>
+    https.interceptors.request.use(injectToken as any, (error) =>
       Promise.reject(error)
     );
 
-    httpServer.interceptors.response.use(
+    https.interceptors.response.use(
       (response) => response?.data?.data,
       (error) => {
         const { response } = error;
@@ -49,8 +49,8 @@ class Http {
       }
     );
 
-    this.instance = httpServer;
-    return httpServer;
+    this.instance = https;
+    return https;
   }
 
   request<T = any, R = AxiosResponse<T>>(
@@ -94,6 +94,4 @@ class Http {
   }
 }
 
-export const httpServer = (token: string) => {
-  return new Http(token);
-};
+export const https = (token?: string) => new Https(token);

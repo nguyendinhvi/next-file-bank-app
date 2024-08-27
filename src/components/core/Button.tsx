@@ -1,5 +1,10 @@
 import { classNames } from "@/utils/helper";
-import React, { ButtonHTMLAttributes, FC, HTMLAttributes } from "react";
+import React, {
+  ButtonHTMLAttributes,
+  FC,
+  HTMLAttributes,
+  PropsWithChildren,
+} from "react";
 
 interface IProps {
   attributes?: HTMLAttributes<HTMLButtonElement>;
@@ -9,7 +14,7 @@ interface IProps {
   type?: "submit" | "reset" | "button" | undefined;
 }
 
-const FButton: FC<IProps> = ({
+const Button: FC<PropsWithChildren<IProps>> = ({
   attributes,
   className = "",
   text = "",
@@ -30,4 +35,4 @@ const FButton: FC<IProps> = ({
   );
 };
 
-export default FButton;
+export default Button;

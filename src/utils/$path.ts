@@ -5,6 +5,7 @@ export const pathOf = {
 
 export const pathApp = {
   home: "/",
-  login: "/login",
+  login: "/auth/login",
+  signup: "/auth/signup",
   profile: "/profile/[id]",
 };

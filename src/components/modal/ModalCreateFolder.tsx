@@ -3,7 +3,7 @@ import { IFormDataFolderCreate } from "@/@interfaces/model/folder";
 import React, { FC, useEffect, useState } from "react";
 import FModal from "../core/FModal";
 import { useModalContext } from "@/contexts/modal-context";
-import FButton from "../core/FButton";
+import Button from "../core/Button";
 import { folderAPI } from "@/apis/folder";
 
 interface IProps {}
@@ -63,7 +63,7 @@ const ModalCreateFolder: FC<IProps> = ({}) => {
         </div>
       </div>
       <div>
-        <FButton text="Create" type="submit" />
+        <Button text="Create" type="submit" />
       </div>
     </form>
   );
