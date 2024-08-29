@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { IFormDataFolderCreate } from "@/@interfaces/model/folder";
 import React, { FC, useEffect, useState } from "react";
-import FModal from "../core/FModal";
+import FModal from "../core/Modal";
 import { useModalContext } from "@/contexts/modal-context";
 import Button from "../core/Button";
 import { folderAPI } from "@/apis/folder";

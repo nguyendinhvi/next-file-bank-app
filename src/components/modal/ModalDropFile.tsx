@@ -4,7 +4,7 @@ import { CheckIcon } from "@heroicons/react/24/outline";
 import { useModalContext } from "@/contexts/modal-context";
 import { sleep } from "@/utils/helper";
 import FileDropZone from "../widgets/FileDropZone";
-import FModal from "../core/FModal";
+import FModal from "../core/Modal";
 
 interface IProps {
   onCancel?: Function;

@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useModalContext } from "@/contexts/modal-context";
 import React, { useState } from "react";
-import FModal from "../core/FModal";
+import FModal from "../core/Modal";
 import { IconChevronUp, IconPause } from "@/resources/icon";
 import FileIcon from "./FileIcon";
 import { FileAPI } from "@/apis/file";
@@ -44,7 +44,11 @@ const FileDropZone: React.FC = () => {
           onDragOver={handleDragOver}
           className="w-full h-[300px] rounded cursor-pointer border-2 border-gray-600 border-dashed mt-4"
         >
-          {droppedFiles.length === 0 ? <p>Drag and drop files here</p> : <ul></ul>}
+          {droppedFiles.length === 0 ? (
+            <p>Drag and drop files here</p>
+          ) : (
+            <ul></ul>
+          )}
         </div>
         <input
           type="file"

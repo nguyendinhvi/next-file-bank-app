@@ -1,6 +1,6 @@
 import { Folder } from "@/@interfaces/model/folder";
 import { IconFolder, IconFolderBlack, IconFileBlack } from "@/resources/icon";
-import { pathOf } from "@/utils";
+import { appPath } from "@/utils";
 import { useRouter } from "next/router";
 import React, { FC } from "react";
 
@@ -14,7 +14,7 @@ const FolderItem: FC<IProps> = ({ folder }) => {
   return (
     <div
       onClick={() => {
-        push(pathOf.folderDetail(folder?.id));
+        push(appPath.folderDetail(folder?.id));
       }}
       className="border rounded p-2 hover:scale-105 cursor-pointer transition-all"
     >

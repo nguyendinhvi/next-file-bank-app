@@ -17,17 +17,6 @@ const FolderLeftPanel: FC<IProps> = ({ folders }) => {
 
   return (
     <div className="p-4 border-r-[1px] w-[300px]">
-      <Button
-        text="Create new"
-        attributes={{}}
-        onClick={() =>
-          openModal("create_folder", {
-            title: "Create folder",
-            // showFooter: true,
-            // onConfirm: () => {},
-          })
-        }
-      />
       <div className="flex mb-1 justify-between w-full min-w-[200px] rounded-md hover:bg-gray-100 px-2 py-3 cursor-pointer items-center gap-2">
         <div className="flex gap-2 items-center">
           <IconFolderBlue className="size-5" />

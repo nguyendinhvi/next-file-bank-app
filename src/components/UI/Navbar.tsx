@@ -8,9 +8,10 @@ import {
   IconSearch,
 } from "@/resources/icon";
 import React, { FC, useId } from "react";
-import FPopover from "../core/FPopover";
+import FPopover from "../core/Popover";
 import Link from "next/link";
 import { useContextGlobal } from "@/contexts/global-context";
+import { appRoutes } from "@/utils";
 
 interface IProps {}
 const src =
@@ -75,7 +76,7 @@ const Navbar: FC<IProps> = ({}) => {
 
                 {/* logout */}
                 <Link
-                  href={"/login"}
+                  href={appRoutes.login}
                   className="font-semibold rounded-lg py-2 px-3  transition hover:bg-gray-100 flex items-center text-base gap-3"
                 >
                   <IconLogout className="size-5 inline-block" /> Logout

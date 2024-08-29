@@ -5,7 +5,7 @@ interface IProps {}
 
 const SignUpPage: FC<IProps> = ({}) => {
   return (
-    <div className="flex-center h-screen">
+    <div className="flex-center min-h-screen py-6">
       <FormSignUp />
     </div>
   );

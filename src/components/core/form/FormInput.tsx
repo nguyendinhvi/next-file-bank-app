@@ -1,16 +1,20 @@
-import React, { FC, HTMLInputTypeAttribute, useId } from "react";
+/* eslint-disable react/display-name */
+import { register } from "module";
+import React, { FC, forwardRef, HTMLInputTypeAttribute, useId } from "react";
+import { UseFormRegister, UseFormRegisterReturn } from "react-hook-form";
+import { twMerge } from "tailwind-merge";
 
 interface IProps {
   label?: string;
-  name?: string;
   type?: HTMLInputTypeAttribute;
-  value?: string;
+  error?: string;
+  register: UseFormRegisterReturn<any>;
 }
 
-const FormInput: FC<IProps> = ({ label, value, name, type = "text" }) => {
+const FormInput: FC<IProps> = forwardRef(({ error, register, label, type }) => {
   const id = useId();
 
-  const attributes = { value, name, type };
+  const attributes = { type };
 
   return (
     <div className="space-y-1 flex-1 error">
@@ -25,15 +29,19 @@ const FormInput: FC<IProps> = ({ label, value, name, type = "text" }) => {
           <input
             {...attributes}
             placeholder={label}
-            className="block w-full border rounded-md shadow-sm appearance-none  focus:outline-2 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 sm:text-sm sm:leading-6 dark:bg-slate-800 focus:outline-blue-400 px-3 py-[11px]"
+            {...register}
+            className={twMerge(
+              "block w-full border rounded-md shadow-sm appearance-none  focus:outline-2 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 sm:text-sm sm:leading-6 dark:bg-slate-800 focus:outline-blue-400 px-3 py-[11px]",
+              error && "border-red-600"
+            )}
           />
         </div>
-        {/* <span className="text-xs text-red-400 leading-2">
-          Full name is too short.
-        </span> */}
+        {error && (
+          <span className="text-xs text-red-400 leading-2">{error}</span>
+        )}
       </div>
     </div>
   );
-};
+});
 
 export default FormInput;

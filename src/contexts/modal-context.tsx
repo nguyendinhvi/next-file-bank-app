@@ -1,4 +1,4 @@
-import FModal, { IFModalProps } from "@/components/core/FModal";
+import FModal, { IFModalProps } from "@/components/core/Modal";
 import ModalCreateFolder from "@/components/modal/ModalCreateFolder";
 import ModalDropFile from "@/components/modal/ModalDropFile";
 import { EModal } from "@/enums";

@@ -1,4 +1,9 @@
-import { IconChevronUp, IconFileBlack, IconFolder, IconFolderBlack } from "@/resources/icon";
+import {
+  IconChevronUp,
+  IconFileBlack,
+  IconFolder,
+  IconFolderBlack,
+} from "@/resources/icon";
 import React, { FC, useEffect, useState } from "react";
 import FolderItem from "../folder/FolderItem";
 import FolderLeftPanel from "../folder/ui/FolderLeftPanel";
@@ -13,9 +18,14 @@ import { getMyFiles } from "@/apis/file";
 interface IProps {}
 
 const ProfileDetailMain: FC<IProps> = ({}) => {
-  const { data: folders } = useApi(() => getMyFolder({ params: { level: 1 } }), []);
-  const { data: files } = useApi(() => getMyFiles({ params: { level: 1 } }), []);
-  console.log("files :", files);
+  const { data: folders } = useApi(
+    () => getMyFolder({ params: { level: 1 } }),
+    []
+  );
+  const { data: files } = useApi(
+    () => getMyFiles({ params: { level: 1 } }),
+    []
+  );
 
   return (
     <div className="flex flex-1 h-full">

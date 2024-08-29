@@ -6,69 +6,84 @@ import React, { FC, useState } from "react";
 import { IFormDataLogin } from "@/@interfaces/common/auth";
 import { authAPI } from "@/apis/auth";
 import FormInput from "@/components/core/form/FormInput";
-import Button from "@/components/core/Button";
+import { useForm, UseFormRegister } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { signUpSchema } from "@/validators/signup.validator";
+import { EResponseCodes } from "@/enums";
+import { ApiErrorResponse } from "@/@interfaces/common/api";
 
 interface IProps {}
 
 const FormSignUp: FC<IProps> = ({}) => {
-  // const segments = useSelectedLayoutSegments();
-  const { push } = useRouter();
-  const { setUser } = useContextGlobal();
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+  } = useForm({
+    mode: "onBlur",
+    resolver: yupResolver(signUpSchema),
+    defaultValues: { first_name: "", last_name: "" },
+  });
 
-  const [formData, setFormData] = useState<IFormDataLogin>();
-
-  const handleLogin = async (e: Event) => {
-    e.stopPropagation();
+  const onSubmit = async (data: any) => {
     try {
-      if (formData) {
-        const data = await authAPI.login(formData);
-        setCookie("token", data?.token);
-        setUser(data?.user);
-        push(`/profile/${data?.user?.id}`);
+      if (data) {
+        const res = await authAPI.signup(data);
       }
-    } catch (error) {}
+    } catch (error: any) {
+      const e = error as ApiErrorResponse;
+      if (e.code === EResponseCodes.email_account_already_exists) {
+        setError("email", { message: "Email account already exists" });
+      }
+    }
   };
 
   return (
-    <div
-      // onSubmit={(e: any) => handleLogin(e)}
-      style={{
-        boxShadow:
-          "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;",
-      }}
-      className="p-6 rounded-md"
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="p-6 rounded-md shadow-xl w-[540px]"
     >
       <h2 className="text-[30px] font-bold mb-1">Getting started</h2>
       <p className="mb-6">Create your account now</p>
-
       <div className="mb-4">
         <div className="flex gap-2">
-          <FormInput label="First Name" />
-          <FormInput label="Last Name" />
+          <FormInput
+            label="First Name"
+            error={errors?.first_name?.message}
+            register={register("first_name")}
+          />
+          <FormInput
+            label="Last Name"
+            error={errors?.last_name?.message}
+            register={register("last_name")}
+          />
         </div>
-        <FormInput label="Email" />
-        <FormInput label="Password" />
+        <FormInput
+          label="Email"
+          error={errors?.email?.message}
+          register={register("email")}
+        />
+        <FormInput
+          label="Password"
+          type="password"
+          error={errors?.password?.message}
+          register={register("password")}
+        />
+        <FormInput
+          label="Repeat password"
+          type="password"
+          error={errors?.repeat_password?.message}
+          register={register("repeat_password")}
+        />
       </div>
 
       <button
         type="submit"
-        disabled
-        className="flex disabled:bg-blue-400 items-center w-full justify-center rounded-md bg-woot-500 py-3 px-3 text-base font-medium text-white shadow-sm hover:bg-woot-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-woot-500 cursor-pointer opacity-40 hover:bg-woot-500"
+        className="flex disabled:bg-blue-400 items-center w-full justify-center rounded-md bg-woot-500 py-3 px-3 text-base font-medium text-white shadow-sm hover:bg-woot-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-woot-500 cursor-pointer disabled:opacity-40 bg-blue-500 hover:bg-woot-500"
       >
         <span>Create account</span>
-        <svg
-          width="20"
-          height="20"
-          fill="none"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-          // className="icon"
-        >
-          <path
-            d="M9 17.898c0 1.074 1.265 1.648 2.073.941l6.31-5.522a1.75 1.75 0 0 0 0-2.634l-6.31-5.522C10.265 4.454 9 5.028 9 6.102v11.796Z"
-            fill="currentColor"
-          ></path>
-        </svg>
       </button>
 
       <div className="relative my-4 section-separator uppercase">
@@ -95,7 +110,7 @@ const FormSignUp: FC<IProps> = ({}) => {
           Login with Google
         </span>
       </a>
-    </div>
+    </form>
   );
 };
 

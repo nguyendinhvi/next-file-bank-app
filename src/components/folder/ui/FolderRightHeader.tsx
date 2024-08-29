@@ -1,5 +1,6 @@
 import { Folder } from "@/@interfaces/model/folder";
 import { Nullable } from "@/@types";
+import Button from "@/components/core/Button";
 import { useModalContext } from "@/contexts/modal-context";
 import { IconHome, IconPlusCircle } from "@/resources/icon";
 import React, { FC } from "react";
@@ -37,10 +38,22 @@ const FolderRightHeader: FC<IProps> = ({ folder }) => {
         </div>
       </div>
 
-      <button onClick={handleOpenModal} className="flex items-center px-2 py-1 hover:bg-gray-100 rounded-md gap-1 text-sm">
-        <IconPlusCircle className="size-6 text-green-500" />
-        <p className="">Create folder</p>
-      </button>
+      <div className="flex">
+        <button
+          onClick={handleOpenModal}
+          className="flex items-center px-2 py-1 hover:bg-gray-100 rounded-md gap-1 text-sm"
+        >
+          <IconPlusCircle className="size-6 text-green-500" />
+          <p className="">Create folder</p>
+        </button>
+        <Button
+          feature="file"
+          className="flex items-center px-2 py-1 hover:bg-gray-100 rounded-md gap-1 text-sm"
+        >
+          <IconPlusCircle className="size-6 text-blue-500" />
+          <p className="">Upload files</p>
+        </Button>
+      </div>
     </div>
   );
 };
